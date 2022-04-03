@@ -94,6 +94,7 @@ public class Main {
 
         int k=15, n= random.nextInt(5)+5;
         double[] a = new double[k];
+        boolean ans = false;
 
         System.out.println("Последовательность:");
 
@@ -107,22 +108,68 @@ public class Main {
 
         for (int t=0; t<k-1; t++){
             if(n < a[t+1] && n > a[t]){
+
                 if(n-a[t] < a[t+1]-n){
-                    System.out.println("Число: "+a[t]+" - ближнее(A["+t+"])");
+                    System.out.println("Число: "+a[t]+" - ближайшее(A["+t+"])");
+                    ans = true;
                 }
                 else {
                     if (n-a[t] > a[t+1]-n){
-                        System.out.println("Число: "+a[t+1]+" - ближнее(A["+(t+1)+"])");
+                        System.out.println("Число: "+a[t+1]+" - ближайшее(A["+(t+1)+"])");
+                        ans = true;
                     }
                     else {
-                        System.out.println("Число: "+a[t+1]+" - ближнее(A["+t+"], А["+t+1+"])");
+                        if(n-a[t] == a[t+1]-n){
+                            System.out.println("Число: "+a[t+1]+" - ближайшее(A["+t+"], А["+t+1+"])");
+                            ans = true;
+                        }
                     }
                 }
             }
         }
+        if (!ans){
+            System.out.println("Нет ближайших чисел");
+        }
 
-        System.out.println("\nПоученый массив по возрастанию:\n"+Arrays.toString(a));// быстрый вывод массива на экран
+        System.out.println("\nПолученный массив по возрастанию:\n"+Arrays.toString(a));// быстрый вывод массива на экран
 
+    }
+
+    /**
+     * Удалить элемент массива целых чисел, кратный 3 и 7.
+     * Если таких элементов нет, выдать сообщение «элементы для удаления не найдены», иначе удалить первый найденный элемент.
+     */
+    private static void task_98() {
+        System.out.println("\n\nTask 98:\nУдалить элемент массива целых чисел, кратный 3 и 7. Если таких элементов нет, выдать сообщение «элементы для удаления не найдены», иначе удалить первый найденный элемент.\n");
+
+        int n= random.nextInt(10)+5,k;
+        int[] a=new int[n], a1=new int[n-1];
+
+
+        System.out.println("Массив:");
+        for (int i=0; i<n; i++){
+            a[i]= Math.round(random.nextInt(33)+2);//(2..35)
+            System.out.println((i+1)+" = "+a[i]);
+        }
+
+        for (int i=0; i<n; i++){
+            if(a[i] != 0 && a[i]%3 == 0 || a[i]%7 == 0){
+                a[i]=0;
+                for (i=0,k=0; i<n;k++, i++){
+                    if (a[i] == 0) {
+                        i++;
+                    }
+                    a1[k]=a[i];
+                }
+                System.out.println("\nПолученный массив:\n"+Arrays.toString(a1));
+                break;
+            }
+            else {
+                if (i==n-1){
+                    System.out.println("\nЭлементы для удаления не найдены");
+                }
+            }
+        }
     }
 
 
@@ -130,6 +177,7 @@ public class Main {
         Start();
         //task_23();
         //task_48();
-        task_73();
+        //task_73();
+        task_98();
     }
 }
