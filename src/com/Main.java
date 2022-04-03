@@ -45,11 +45,11 @@ public class Main {
      * б) числами Фибоначчи.
      */
     private static void task_48(){
-        System.out.println("Task 48:\nЗадана последовательность N вещественных чисел. Вычислить сумму чисел, порядковые номера которых являются:\n\tа) простыми числами;\n\tб) числами Фибоначчи.\n");
+        System.out.println("\n\nTask 48:\nЗадана последовательность N вещественных чисел. Вычислить сумму чисел, порядковые номера которых являются:\n\tа) простыми числами;\n\tб) числами Фибоначчи.\n");
 
-        int n=random.nextInt(45)+15, j=0;
+        int n=random.nextInt(45)+15;
         double[] arrays=new double[n];
-        double d,sumF=0, sumPN=0;
+        double sumF=0, sumPN=0;
 
         System.out.println("Количество N: "+n+"\n\nPN  |Fib.|\nSum:|Sum:|Значения:");
 
@@ -84,10 +84,52 @@ public class Main {
 
     }
 
+    /**
+     * Даны последовательность вещественных чисел а1, a2, ..., а15,
+     * упорядоченная по возрастанию, и число n, не равное ни одному из чисел последовательности.
+     * Найти элемент последовательности (его порядковый номер и значение), ближайший к n.
+     */
+    private static void task_73() {
+        System.out.println("\n\nTask 73:\nДаны последовательность вещественных чисел а1, a2, ..., а15, упорядоченная по возрастанию, и число n, не равное ни одному из чисел последовательности. Найти элемент последовательности (его порядковый номер и значение), ближайший к n.\n");
+
+        int k=15, n= random.nextInt(5)+5;
+        double[] a = new double[k];
+
+        System.out.println("Последовательность:");
+
+        for (int i=0; i<k; i++){
+            a[i]= Math.round((random.nextDouble(13)+2)*100.0)/100.0;//(2..15)
+            System.out.println((i+1)+" = "+a[i]);
+        }
+        Arrays.sort(a);// сортировка по возрастанию
+
+        System.out.println("\nЗначение N: "+n);
+
+        for (int t=0; t<k-1; t++){
+            if(n < a[t+1] && n > a[t]){
+                if(n-a[t] < a[t+1]-n){
+                    System.out.println("Число: "+a[t]+" - ближнее(A["+t+"])");
+                }
+                else {
+                    if (n-a[t] > a[t+1]-n){
+                        System.out.println("Число: "+a[t+1]+" - ближнее(A["+(t+1)+"])");
+                    }
+                    else {
+                        System.out.println("Число: "+a[t+1]+" - ближнее(A["+t+"], А["+t+1+"])");
+                    }
+                }
+            }
+        }
+
+        System.out.println("\nПоученый массив по возрастанию:\n"+Arrays.toString(a));// быстрый вывод массива на экран
+
+    }
+
 
     public static void main(String[] args) {
         Start();
-        task_23();
-        task_48();
+        //task_23();
+        //task_48();
+        task_73();
     }
 }
