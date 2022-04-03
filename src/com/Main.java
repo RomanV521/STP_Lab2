@@ -58,7 +58,7 @@ public class Main {
             arrays[i]= Math.round((random.nextDouble(14)+3)*100.0)/100.0;// (3..17), ограничение до сотых
 
             //A)
-            if(i<=1 || (i+1)%2!=0 && (i+1)%3!=0 && (i+1)%5!=0){
+            if(i==2 || i==4 || i<=1 || (i+1)%2!=0 && (i+1)%3!=0 && (i+1)%5!=0){
                 System.out.print("\'+\' ");
                 sumPN+=arrays[i];
             }
@@ -172,12 +172,40 @@ public class Main {
         }
     }
 
+    /**
+     * Дана последовательность целых положительных чисел. Найти произведение только тех из них, которые больше заданного числа М.
+     * Если таких чисел нет, то выдать сообщение об этом.
+     */
+    private static void task_123() {
+        System.out.println("\n\nTask 123:\nДана последовательность целых положительных чисел. Найти произведение только тех из них, которые больше заданного числа М. Если таких чисел нет, то выдать сообщение об этом.\n");
+
+        int n= random.nextInt(10)+5,m,sum=0;
+        int[] a=new int[n];
+
+        m = random.nextInt(15)+7;
+
+        System.out.println("Значение М: "+m+"\nМассив:");
+        for (int i=0; i<n; i++){
+            a[i]= Math.round(random.nextInt(29)+1);//(1..30)
+            System.out.println((i+1)+" = "+a[i]);
+            if(a[i]>m){
+                sum+=a[i];
+            }
+        }
+        if (sum > 0){
+            System.out.println("\nСумма чисел, которые больше заданного числа М: "+sum);
+        }
+        else {
+            System.out.println("\nНет чисел, которые больше заданного числа М");
+        }
+    }
 
     public static void main(String[] args) {
         Start();
-        //task_23();
-        //task_48();
-        //task_73();
+        task_23();
+        task_48();
+        task_73();
         task_98();
+        task_123();
     }
 }
