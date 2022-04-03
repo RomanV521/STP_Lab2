@@ -35,13 +35,18 @@ public class Main {
         }
         else{
             System.out.println("\nКоличество книг: "+sum+" - не шестизначное число");
-
         }
+    }
+
+
+    private static void task_48(){
+
     }
 
 
     public static void main(String[] args) {
         Start();
         task_23();
+        task_48();
     }
 }
