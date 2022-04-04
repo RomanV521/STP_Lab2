@@ -139,22 +139,23 @@ public class Main {
         System.out.println("\n\nTask 98:\nУдалить элемент массива целых чисел, кратный 3 и 7. Если таких элементов нет, выдать сообщение «элементы для удаления не найдены», иначе удалить первый найденный элемент.\n");
 
         final int N = random.nextInt(10) + 5;
-        int realSize = N, ElemPos;
-        int[] a = new int[N], a1 = new int[N - 1];
+        int realSize = N;
+        int[] a = new int[N];
 
         System.out.println("Массив:");
         for (int i = 0; i < N; i++) {
             a[i] = Math.round(random.nextInt(33) + 2);//(2..35)
-//            a[2]=21;
-//            a[1]=0;
-//            a[4]=21;
+//            a[3] = 21;
+//            a[2] = 0;
+//            a[4] = 21;
             System.out.println((i + 1) + " = " + a[i]);
         }
 
 
-        for (int i = 0; i < N; i++) {
+        for (int i=0; i < N; i++) {
             if (a[i] != 0 && a[i] % 3 == 0 && a[i] % 7 == 0) {
-                removeElement(a, (i + 1));
+                System.arraycopy(a, i, a, (i - 1), ((a.length) - i));
+                a[i - 1] = 0;
                 realSize--;
                 break;
             }
@@ -192,11 +193,6 @@ public class Main {
         } else {
             System.out.println("\nНет чисел, которые больше заданного числа М");
         }
-    }
-
-    private static void removeElement(int[] a, int ElemPos) {
-        java.lang.System.arraycopy(a, ElemPos, a, (ElemPos - 1), ((a.length) - ElemPos));
-        a[(a.length) - 1] = 0;
     }
 
     public static void main(String[] args) {
